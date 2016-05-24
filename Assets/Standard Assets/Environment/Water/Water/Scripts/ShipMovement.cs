@@ -3,10 +3,11 @@ using System.Collections;
 
 public class ShipMovement : MonoBehaviour {
 
-	private int accel =20;
-	private int turn = 50;
-	private float speedForward =1;
-	private float speedTurn =1;
+	private float acceleration =0.03f;
+	private float speedForward = 0.0f;
+	private float maxSpeed = 15.0f;
+	private float maxBackSpeed = -10.0f;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -16,27 +17,43 @@ public class ShipMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKey ("w")) 
+		transform.position += transform.forward * Time.deltaTime * speedForward;
+		if (Input.GetKey ("w") && speedForward < maxSpeed) 
 		{
-			//SetTransformZ((transform.position.z) + speedForward / accel);
-			transform.TransformDirection(Vector3.forward);
+			speedForward += acceleration;
 		}
-		if (Input.GetKey ("s")) 
+		if (Input.GetKey ("s") && speedForward > maxBackSpeed) 
 		{
-			SetTransformZ((transform.position.z) - speedForward / accel);
+			speedForward -= acceleration;
 		}
 		if (Input.GetKey ("a")) 
 		{
-			transform.Rotate (Vector3.down * Time.deltaTime);
+			if (speedForward < 1.0f || speedForward > -1.0f) {
+				transform.Rotate (Vector3.down * Time.deltaTime * 2);
+				slowDown (2);
+			} else {
+				transform.Rotate (Vector3.down * Time.deltaTime);
+				slowDown (2);
+			}
 		}
 		if (Input.GetKey ("d")) 
 		{
-			transform.Rotate (Vector3.up * Time.deltaTime*2);
+			if (speedForward < 1.0f || speedForward > -1.0f) {
+				transform.Rotate (Vector3.up * Time.deltaTime * 2);
+				slowDown (2);
+			} else {
+				transform.Rotate (Vector3.up * Time.deltaTime);
+				slowDown (2);
+			}
 		}
+		slowDown (1);
 	}
 
-	void SetTransformZ(float n)
+	public void slowDown(int n)
 	{
-		transform.position = new Vector3(transform.position.x, transform.position.y, n);
+		if(speedForward > 0 && n == 1){ speedForward -= 0.01f;}
+		if(speedForward < 0 && n == 1){ speedForward += 0.01f;}
+		if(speedForward > 0 && n == 2){ speedForward -= 0.02f;}
+		if(speedForward < 0 && n == 2){ speedForward += 0.02f;}
 	}
 }
