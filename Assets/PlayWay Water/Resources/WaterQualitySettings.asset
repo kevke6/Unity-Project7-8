@@ -14,7 +14,7 @@ MonoBehaviour:
   qualityLevels:
   - name: Fastest
     maxSpectrumResolution: 32
-    allowHighPrecisionTextures: 0
+    allowHighPrecisionTextures: 1
     allowHighQualitySlopeMaps: 1
     tileSizeScale: 0.8
     wavesMode: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     maxVertexCount: 90000
     maxTesselatedVertexCount: 10000
     allowAlphaBlending: 1
-    allowHighQualityReflections: 0
+    allowHighQualityReflections: 1
   - name: Fast
     maxSpectrumResolution: 64
     allowHighPrecisionTextures: 0
