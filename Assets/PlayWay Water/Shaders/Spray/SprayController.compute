@@ -1,0 +1,64 @@
+#pragma kernel UpdateParticles
+#pragma kernel ClearParticles
+
+struct ParticleData
+{
+	float3 position;
+	float3 velocity;
+	float2 lifetime;
+	float offset;
+	float maxIntensity;
+};
+
+AppendStructuredBuffer<ParticleData> TargetParticles : register(u1);
+RWStructuredBuffer<ParticleData> TargetParticlesFlat : register(u2);
+//RWTexture2D<half> FoamMap : register(u3);
+//Texture2D<half2> DisplacementMap;
+StructuredBuffer<ParticleData> SourceParticles;
+StructuredBuffer<int4> SourceParticlesInfo;
+
+SamplerState samplerDisplacementMap;
+
+float deltaTime;
+float4 externalForces;
+
+[numthreads(128,1,1)]
+void UpdateParticles (uint3 id : SV_DispatchThreadID)
+{
+	//if(id.x < SourceParticlesInfo[0].x)
+	{
+		ParticleData particle = SourceParticles[id.x];
+		particle.lifetime.x -= deltaTime;
+		particle.velocity *= (1.0 - deltaTime * 0.2);
+		particle.velocity += externalForces.xyz;
+		
+		if(particle.lifetime.x > 0)
+		{
+			particle.position += particle.velocity * deltaTime;
+			TargetParticles.Append(particle);
+		}
+		/*else
+		{
+			float2 originalPos = particle.position.xz;
+			float2 pos = originalPos;
+			
+			uint width, height;
+			
+			for(int i=0; i<6; ++i)
+				pos -= (pos + DisplacementMap.SampleLevel(samplerDisplacementMap, pos, 0) * 3.4 - originalPos);
+			
+			FoamMap.GetDimensions(width, height);
+			FoamMap[pos * width] += 100;
+		}*/
+	}
+}
+
+[numthreads(128,1,1)]
+void ClearParticles (uint3 id : SV_DispatchThreadID)
+{
+	//TargetParticlesFlat[id.x].lifetime.x = 0;
+	ParticleData particle = TargetParticlesFlat[id.x];
+	particle.lifetime = 0;
+	TargetParticlesFlat[id.x] = particle;
+}
+

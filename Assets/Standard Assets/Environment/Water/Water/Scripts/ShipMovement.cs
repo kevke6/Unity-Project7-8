@@ -1,59 +1,90 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShipMovement : MonoBehaviour {
+public class ShipMovement : MonoBehaviour
+{
 
-	private float acceleration =0.03f;
-	private float speedForward = 0.0f;
-	private float maxSpeed = 15.0f;
-	private float maxBackSpeed = -10.0f;
+    public float thrust = 0.0f;
+    public float rotate = 0.0f;
+    private int count;
+    public Vector3 eulerAngleVelocity;
+    public Rigidbody rb;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+    void FixedUpdate()
+    {
+        ShipMovementForce();
+        ShipRotation();
+    }
 
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		transform.position += transform.forward * Time.deltaTime * speedForward;
-		if (Input.GetKey ("w") && speedForward < maxSpeed) 
-		{
-			speedForward += acceleration;
-		}
-		if (Input.GetKey ("s") && speedForward > maxBackSpeed) 
-		{
-			speedForward -= acceleration;
-		}
-		if (Input.GetKey ("a")) 
-		{
-			if (speedForward < 1.0f || speedForward > -1.0f) {
-				transform.Rotate (Vector3.down * Time.deltaTime * 2);
-				slowDown (2);
-			} else {
-				transform.Rotate (Vector3.down * Time.deltaTime);
-				slowDown (2);
-			}
-		}
-		if (Input.GetKey ("d")) 
-		{
-			if (speedForward < 1.0f || speedForward > -1.0f) {
-				transform.Rotate (Vector3.up * Time.deltaTime * 2);
-				slowDown (2);
-			} else {
-				transform.Rotate (Vector3.up * Time.deltaTime);
-				slowDown (2);
-			}
-		}
-		slowDown (1);
-	}
+    void ShipRotation()
+    {
+        if (Input.GetKey("d"))
+        {
+            if (thrust < 0)
+            {
+                rotate = 4.0f;
+            }
+            else
+            {
+                rotate = -4.0f;
+            }
+            eulerAngleVelocity = new Vector3(0, rotate, 0);
+            Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
+            rb.MoveRotation(rb.rotation * deltaRotation);
+        }
+        if (Input.GetKey("a"))
+        {
+            if (thrust < 0)
+            {
+                rotate = -4.0f;
+            }
+            else
+            {
+                rotate = 4.0f;
+            }
+            eulerAngleVelocity = new Vector3(0, rotate, 0);
+            Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * Time.deltaTime);
+            rb.MoveRotation(rb.rotation * deltaRotation);
+        }
+    }
 
-	public void slowDown(int n)
-	{
-		if(speedForward > 0 && n == 1){ speedForward -= 0.01f;}
-		if(speedForward < 0 && n == 1){ speedForward += 0.01f;}
-		if(speedForward > 0 && n == 2){ speedForward -= 0.02f;}
-		if(speedForward < 0 && n == 2){ speedForward += 0.02f;}
-	}
+    void ShipMovementForce()
+    {
+        if (Input.GetKey("w"))
+        {
+            if (thrust <= 0.2f)
+            {
+                thrust += 0.01f;
+            }
+        }
+        if (Input.GetKey("s"))
+        {
+            if (thrust >= -0.07f)
+            {
+                thrust -= 0.005f;
+            }
+        }
+        else
+        {
+            if (thrust > 0.0f && Input.GetKey("w") != true)
+            {
+                thrust -= 0.001f;
+                count++;
+            }
+            if (thrust < 0.0f && Input.GetKey("s") != true)
+            {
+                thrust += 0.001f;
+                count++;
+            }
+            if (count > 500)
+            {
+                thrust = 0.0f;
+                count = 0;
+            }
+        }
+        rb.MovePosition(transform.position + transform.forward * thrust);
+    }
 }

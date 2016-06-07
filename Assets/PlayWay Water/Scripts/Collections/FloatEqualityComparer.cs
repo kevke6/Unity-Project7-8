@@ -1,0 +1,20 @@
+﻿using System.Collections.Generic;
+
+public class FloatEqualityComparer : IEqualityComparer<float>
+{
+	private static FloatEqualityComparer defaultInstance;
+	public static FloatEqualityComparer Default
+	{
+		get { return defaultInstance ?? (defaultInstance = new FloatEqualityComparer()); }
+	}
+
+	public bool Equals(float x, float y)
+	{
+		return x == y;
+	}
+
+	public int GetHashCode(float obj)
+	{
+		return (int)System.BitConverter.DoubleToInt64Bits(obj);
+	}
+}

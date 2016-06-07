@@ -18,7 +18,7 @@ public class CameraGUI : MonoBehaviour {
 		rotX += Input.GetAxis ("Mouse X") * sensitivity;
 		rotX = Mathf.Clamp (rotX,-180,180);
 		rotY += Input.GetAxis ("Mouse Y") * sensitivity;
-		rotY = Mathf.Clamp (rotY,-70,0);
+		rotY = Mathf.Clamp (rotY,-70,70);
 
 		transform.localEulerAngles = new Vector3 (-rotY, rotX, transform.localEulerAngles.z);
 	}
