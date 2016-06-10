@@ -14,8 +14,8 @@ public class AIShipOut : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		moveToPositions [0] = new Vector3 (-200f, 1.7f, -204f);
-		moveToPositions [1] = new Vector3 (0f, 1.7f, -204f);
-		moveToPositions [2] = new Vector3 (0f, 1.7f, -50f);
+		moveToPositions [1] = new Vector3 (20f, 1.7f, -204f);
+		moveToPositions [2] = new Vector3 (20f, 1.7f, -50f);
 		moveToPositions [3] = new Vector3 (240f, 1.7f, -50f);
 		rotateToAngle[0] = new Vector3(0,180,0);
 		rotateToAngle[1] = new Vector3(0,0,0);
@@ -28,7 +28,7 @@ public class AIShipOut : MonoBehaviour {
 		positions = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 		if (positionCounter <= 3) {
 			try {
-				transform.position = Vector3.MoveTowards (transform.position, moveToPositions[positionCounter], 0.6f);
+				transform.position = Vector3.MoveTowards (transform.position, moveToPositions[positionCounter], 0.3f);
 			} catch {
 			}
 			if (positions.x == transform.position.x && positions.z == transform.position.z) {

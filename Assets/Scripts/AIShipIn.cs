@@ -13,8 +13,8 @@ public class AIShipIn : MonoBehaviour {
 	public Vector3 positions;
 	// Use this for initialization
 	void Start () {
-		moveToPositions [0] = new Vector3 (0f, 1.7f, 200f);
-		moveToPositions [1] = new Vector3 (0f, 1.7f, -210f);
+		moveToPositions [0] = new Vector3 (-20f, 1.7f, 200f);
+		moveToPositions [1] = new Vector3 (-20f, 1.7f, -210f);
 		moveToPositions [2] = new Vector3 (58f, 1.7f, -210f);
 		moveToPositions [3] = new Vector3 (58f, 1.7f, -168f);
 		rotateToAngle[0] = new Vector3(0,180,0);
@@ -28,7 +28,7 @@ public class AIShipIn : MonoBehaviour {
 		positions = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 		if (positionCounter <= 3) {
 			try {
-			transform.position = Vector3.MoveTowards (transform.position, moveToPositions[positionCounter], 0.5f);
+			transform.position = Vector3.MoveTowards (transform.position, moveToPositions[positionCounter], 0.3f);
 			} catch {
 			}
 			if (positions.x == transform.position.x && positions.z == transform.position.z) {
