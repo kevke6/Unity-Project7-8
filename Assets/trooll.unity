@@ -529,6 +529,17 @@ MonoBehaviour:
   rotate: 0
   eulerAngleVelocity: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
+--- !u!114 &507414028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 507414022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813f434215f6ced4f97aaa35177f0c95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &532833222
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +640,30 @@ Prefab:
     - target: {fileID: 478158, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 157426, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
+      propertyPath: m_TagString
+      value: Harbor
+      objectReference: {fileID: 0}
+    - target: {fileID: 184268, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199920, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
+      propertyPath: m_TagString
+      value: Harbor
+      objectReference: {fileID: 0}
+    - target: {fileID: 162412, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
+      propertyPath: m_TagString
+      value: Harbor
+      objectReference: {fileID: 0}
+    - target: {fileID: 187298, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
+      propertyPath: m_TagString
+      value: Harbor
+      objectReference: {fileID: 0}
+    - target: {fileID: 127506, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
+      propertyPath: m_TagString
+      value: Harbor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
@@ -799,6 +834,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   water: {fileID: 0}
   mode: 1
+--- !u!1 &692146180 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 157426, guid: d2342a6e792f78f4db7b77603df2e116, type: 2}
+  m_PrefabInternal: {fileID: 590578792}
+--- !u!65 &692146181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692146180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &712293385
 Prefab:
   m_ObjectHideFlags: 0
@@ -935,6 +986,45 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 757047108}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &806210544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 806210546}
+  - 114: {fileID: 806210545}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &806210545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 806210544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee848f9379cbb8b44a5a7fd046a0e297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &806210546
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 806210544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &954723355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,6 +1980,10 @@ Prefab:
     - target: {fileID: 400028, guid: f7857fcbf3e2c1541891451a1aa1a4a4, type: 3}
       propertyPath: m_LocalScale.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: f7857fcbf3e2c1541891451a1aa1a4a4, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7857fcbf3e2c1541891451a1aa1a4a4, type: 3}
