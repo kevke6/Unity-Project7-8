@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour {
 
 	public void winTheGame() {
 		win = true;
-		if (gameOver) {
+		if (win) {
 			restart = true;
 			Time.timeScale = 0.0f;
 			LoadOnClick loadOnClick = new LoadOnClick ();
