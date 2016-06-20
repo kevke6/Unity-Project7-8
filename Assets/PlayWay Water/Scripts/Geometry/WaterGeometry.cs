@@ -51,14 +51,14 @@ namespace PlayWay.Water
 		{
 			this.water = water;
 			
-#pragma warning disable CS9998 // Type or member is obsolete
+#pragma warning disable CS9993 // Type or member is obsolete
 			if(customMeshes != null && customMeshes.Length != 0)
 			{
 				customSurfaceMeshes.Meshes = customMeshes;
 				customMeshes = null;
 			}
-#pragma warning restore CS9998	 // Type or member is obsolete
-
+#pragma warning restore CS9993	 // Type or member is obsolete
+		
 			OnValidate(water);
 			UpdateVertexCount();
 

@@ -79,7 +79,7 @@ public class ShipMovement : MonoBehaviour
 				thrust += 0.0001f;
 				count++;
 			}
-			if (count > 750)
+			if (count > 750 && thrust <= 0.07f)
 			{
 				thrust = 0.0f;
 				count = 0;
