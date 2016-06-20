@@ -33,7 +33,7 @@ public class GameOverByContact : MonoBehaviour {
 
 	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.name == "Harbor" || col.gameObject.name == "SeaAnglerAIIn" || col.gameObject.name == "SeaAnglerAIOut") {
-			Debug.Log("You hit the harbor");
+			Debug.Log("You hit the " + col.gameObject.name);
 			gameController.GameOver ();
 		}
 	}
