@@ -40,7 +40,7 @@ public class GameOverByContact : MonoBehaviour {
 
 	void GameWonChecker(){
 		if ((transform.position.x - 10.0f) <= spotX && (transform.position.x + 10.0f) >= spotX && (transform.position.z - 20.0f) <= spotZ && (transform.position.z + 20.0f) >= spotZ && thrust == 0.00000f) {
-			gameController.GameOver ();
+			gameController.winTheGame ();
 		}
 	}
 }

@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/infoScreen.unity
   - enabled: 1
     path: Assets/GameOverScreen.unity
+  - enabled: 1
+    path: Assets/GameWon.unity

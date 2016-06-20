@@ -5,11 +5,13 @@ public class GameController : MonoBehaviour {
 
 	private bool gameOver;
 	private bool restart;
+	private bool win;
 
 	// Use this for initialization
 	void Start () {
 		gameOver = false;
 		restart = false;
+		win = false;
 		Time.timeScale = 1.0f;
 	}
 	
@@ -32,6 +34,16 @@ public class GameController : MonoBehaviour {
 			Time.timeScale = 0.0f;
 			LoadOnClick loadOnClick = new LoadOnClick ();
 			loadOnClick.LoadScene (3);
+		}
+	}
+
+	public void winTheGame() {
+		win = true;
+		if (gameOver) {
+			restart = true;
+			Time.timeScale = 0.0f;
+			LoadOnClick loadOnClick = new LoadOnClick ();
+			loadOnClick.LoadScene (4);
 		}
 	}
 }
